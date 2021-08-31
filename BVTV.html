@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Meta information about the code -->
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title> BetterVerticalTwitch.tv </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<!-- Header section-->
+<header>
+    <div class="header" style="width: 100%; height: 44px;">
+        <H2 style="margin-inline: 0;"> BetterVerticalTwitch.tv</H2>
+        <div id="searchbar">
+            <form id="channelinput" style="visibility: hidden;" onsubmit="generate()">
+                <input id="textoutput" type="text" id="channelname" name="channel">
+            </form>
+            <img id="searchicon" src="Content\search.svg" class="filter_black" onclick="opensearchbar()">
+        </div>
+    </div>
+</header>
+<!-- Page content-->
+
+<body>
+    <div id="twitch-embed"></div>
+    <iframe id = "twitchchat-embed" src = "https://www.twitch.tv/embed/kyle/chat?darkpopout&parent=localhost" width="99%">
+    </iframe>
+</body>
+
+<!-- Script to be executed -->
+<script>
+    function opensearchbar() {
+        x = document.getElementById("channelinput").style.visibility;
+        if (x == "hidden") {
+            document.getElementById("channelinput").style.visibility = "visible";
+        } else {
+            document.getElementById("channelinput").style.visibility = "hidden";
+        };
+    };
+        
+</script>
+
+<script src="https://player.twitch.tv/js/embed/v1.js"></script>
+<script type="text/javascript">
+    var heightx = (visualViewport.width / 1.7) + "px";
+    var heighty = (visualViewport.height - (visualViewport.width / 1.7) - 55) + "px";
+    var channelx = window.prompt();
+    var options = {
+        width: "100%",
+        height: heightx,
+        channel: channelx,
+        theme: "dark",
+        layout: "video",
+    };
+    var player = new Twitch.Player("twitch-embed", options);
+    player.setVolume(0.5);
+    document.getElementById("twitchchat-embed").style.height = heighty ;
+    function chatchannel() {
+        var z = document.getElementById("textoutput").value;
+        var url = "https://www.twitch.tv/embed/"+ channelx +"/chat?parent=localhost&darkpopout";
+        document.getElementById("twitchchat-embed").src= url;
+        };
+    chatchannel();
+</script>
+
+
+
+
+</html>
